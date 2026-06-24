@@ -1,3 +1,8 @@
+// Insights page (route: "/insights").
+// Shows the topic areas Vantgrove writes about, then either a grid of
+// published articles or an empty state when there are none yet.
+
+// Topic tags displayed as pills near the top.
 const topics = [
   "Technology",
   "Artificial Intelligence",
@@ -8,6 +13,7 @@ const topics = [
   "Innovation",
 ];
 
+// Shape of a published insight/article.
 type Article = {
   title: string;
   excerpt: string;
@@ -16,7 +22,8 @@ type Article = {
   date: string;
 };
 
-// Add entries here as insights are published.
+// No posts yet. Add entries here to publish — doing so automatically swaps
+// the empty state below for the article card grid.
 const articles: Article[] = [];
 
 export default function InsightsPage() {
@@ -31,6 +38,7 @@ export default function InsightsPage() {
         operations, and innovation.
       </p>
 
+      {/* Topic pills — soft-green rounded tags. */}
       <ul className="mt-8 flex flex-wrap gap-2">
         {topics.map((topic) => (
           <li
@@ -42,6 +50,8 @@ export default function InsightsPage() {
         ))}
       </ul>
 
+      {/* Empty state vs. article grid, depending on whether any articles
+          have been added above. */}
       {articles.length === 0 ? (
         <div className="mt-14 rounded-lg border border-border px-8 py-14 text-center">
           <p className="text-lg font-medium text-foreground">
@@ -59,6 +69,7 @@ export default function InsightsPage() {
           </p>
         </div>
       ) : (
+        // One linked card per article (1 column on mobile, 2 on small+).
         <div className="mt-14 grid gap-8 sm:grid-cols-2">
           {articles.map((article) => (
             <a

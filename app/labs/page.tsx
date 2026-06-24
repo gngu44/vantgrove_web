@@ -1,3 +1,9 @@
+// Vantgrove Labs page (route: "/labs").
+// Introduces the Labs space, lists current projects (or an empty state), and
+// describes the kinds of content that will live here.
+
+// The categories of content Labs will hold, shown as a card grid near the
+// bottom so visitors understand the section's scope.
 const contentAreas = [
   {
     title: "Current Projects",
@@ -25,13 +31,15 @@ const contentAreas = [
   },
 ];
 
+// Shape of a Labs project.
 type Project = {
   name: string;
   summary: string;
   status: string;
 };
 
-// Add projects here as they get underway.
+// No projects yet. Add entries here to replace the empty state with a grid
+// of project cards.
 const projects: Project[] = [];
 
 export default function LabsPage() {
@@ -46,7 +54,7 @@ export default function LabsPage() {
         experimentation.
       </p>
 
-      {/* Current projects */}
+      {/* Current projects: empty state until the projects array has entries. */}
       <h2 className="mt-16 text-2xl font-semibold tracking-tight text-foreground">
         Current Projects
       </h2>
@@ -60,6 +68,7 @@ export default function LabsPage() {
           </p>
         </div>
       ) : (
+        // One card per project (1 column on mobile, 2 on small+ screens).
         <div className="mt-6 grid gap-6 sm:grid-cols-2">
           {projects.map((project) => (
             <div
@@ -76,16 +85,13 @@ export default function LabsPage() {
         </div>
       )}
 
-      {/* What lives here */}
+      {/* "What you'll find here": the content categories as a 3-column grid. */}
       <h2 className="mt-16 text-2xl font-semibold tracking-tight text-foreground">
         What you&apos;ll find here
       </h2>
       <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {contentAreas.map((area) => (
-          <div
-            key={area.title}
-            className="rounded-lg border border-border p-6"
-          >
+          <div key={area.title} className="rounded-lg border border-border p-6">
             <h3 className="text-lg font-semibold tracking-tight text-foreground">
               {area.title}
             </h3>

@@ -1,3 +1,6 @@
+// Contact page (route: "/contact").
+// Shows the headline/intro, direct contact methods (email + LinkedIn), and
+// the message form.
 import ContactForm from "@/components/ContactForm";
 
 export default function ContactPage() {
@@ -16,11 +19,13 @@ export default function ContactPage() {
         </p>
       </div>
 
+      {/* Direct contact methods, separated from the intro by a top border. */}
       <div className="mt-12 space-y-8 border-t border-border pt-10">
         <div>
           <p className="text-sm font-semibold uppercase tracking-wide text-muted">
             Primary Contact
           </p>
+          {/* mailto: opens the visitor's email client. */}
           <a
             href="mailto:hello@vantgrove.com"
             className="mt-2 inline-block text-lg font-medium text-brand transition-colors hover:text-brand-dark"
@@ -33,12 +38,16 @@ export default function ContactPage() {
           <p className="text-sm font-semibold uppercase tracking-wide text-muted">
             LinkedIn
           </p>
+          {/* Opens in a new tab; rel="noopener noreferrer" is a security best
+              practice for target="_blank" links. */}
           <a
             href="https://www.linkedin.com/company/vantgrove/about/"
             target="_blank"
             rel="noopener noreferrer"
             className="mt-2 inline-flex items-center gap-2 text-lg font-medium text-brand transition-colors hover:text-brand-dark"
           >
+            {/* Inline LinkedIn logo. fill="currentColor" makes it match the
+                link's text color (so it turns dark-green on hover). */}
             <svg
               aria-hidden
               viewBox="0 0 24 24"
@@ -52,6 +61,7 @@ export default function ContactPage() {
         </div>
       </div>
 
+      {/* The interactive message form (its own client component). */}
       <div className="mt-12 border-t border-border pt-10">
         <h2 className="text-xl font-semibold tracking-tight text-foreground">
           Send a message
