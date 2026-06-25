@@ -1,3 +1,9 @@
+/* Global styles and the design system.
+   - @import pulls in Tailwind.
+   - :root defines the raw brand colors as CSS variables.
+   - @theme registers them with Tailwind so they become utility classes
+     (e.g. --color-brand → bg-brand / text-brand / border-brand).
+   Change a hex value once here and it updates everywhere on the site. */
 @import "tailwindcss";
 
 :root {
@@ -14,6 +20,7 @@
   --brand-soft: #eef4ea; /* subtle accent background */
 }
 
+/* Expose the variables above to Tailwind as color/font utilities. */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);

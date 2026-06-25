@@ -1,19 +1,26 @@
+// ContactForm — the interactive form on the Contact page.
+// "use client" marks this as a Client Component: it runs in the browser so it
+// can hold state and handle submit events (Server Components can't).
 "use client";
 
 import { useState } from "react";
 
+// The four states the form moves through, used to drive the UI below.
 type Status = "idle" | "submitting" | "success" | "error";
 
 export default function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
-  const [error, setError] = useState<string>("");
+  const [error, setError] = useState<string>(""); // message shown on failure
 
+  // Runs when the form is submitted. Posts the field values to the
+  // /api/contact route, which emails them to hello@vantgrove.com.
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
+    event.preventDefault(); // stop the browser's default full-page reload
     setStatus("submitting");
     setError("");
 
     const form = event.currentTarget;
+    // Collect all named fields into a plain { name, email, ... } object.
     const data = Object.fromEntries(new FormData(form).entries());
 
     try {
@@ -23,12 +30,13 @@ export default function ContactForm() {
         body: JSON.stringify(data),
       });
 
+      // A non-2xx response means the server rejected it; surface its message.
       if (!res.ok) {
         const body = await res.json().catch(() => ({}));
         throw new Error(body.error ?? "Something went wrong. Please try again.");
       }
 
-      form.reset();
+      form.reset(); // clear the fields
       setStatus("success");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong.");
@@ -36,19 +44,20 @@ export default function ContactForm() {
     }
   }
 
+  // On success, replace the whole form with a confirmation message.
   if (status === "success") {
     return (
       <div className="rounded-lg border border-border bg-brand-soft px-6 py-8">
         <p className="text-lg font-medium text-foreground">
           Thank you — your message has been sent.
         </p>
-        <p className="mt-2 text-muted">
-          We&apos;ll be in touch soon.
-        </p>
+        <p className="mt-2 text-muted">We&apos;ll be in touch soon.</p>
       </div>
     );
   }
 
+  // noValidate disables the browser's built-in popups so the server is the
+  // single source of validation. Each input's `name` becomes a key in `data`.
   return (
     <form onSubmit={handleSubmit} className="space-y-6" noValidate>
       <div>
@@ -115,10 +124,11 @@ export default function ContactForm() {
         />
       </div>
 
-      {status === "error" && (
-        <p className="text-sm text-red-600">{error}</p>
-      )}
+      {/* Error message, shown only when a submit attempt failed. */}
+      {status === "error" && <p className="text-sm text-red-600">{error}</p>}
 
+      {/* Disabled while submitting to prevent duplicate sends; label reflects
+          the in-flight state. */}
       <button
         type="submit"
         disabled={status === "submitting"}

@@ -21,6 +21,9 @@ export default function Footer() {
           <Link href="/contact" className="transition-colors hover:text-brand">
             Contact
           </Link>
+          <Link href="/privacy" className="transition-colors hover:text-brand">
+            Privacy
+          </Link>
         </div>
       </div>
     </footer>
