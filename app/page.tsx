@@ -47,7 +47,7 @@ export default function Home() {
           The text sits over the image; a dark gradient keeps it readable. */}
       <section className="relative isolate overflow-hidden">
         <Image
-          src="/bamboo-banner.jpg"
+          src="/hero-banner.jpg" 
           alt="Bamboo grove"
           width={1920}
           height={760}
