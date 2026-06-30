@@ -49,9 +49,9 @@ export default function LabsPage() {
         Vantgrove Labs
       </h1>
       <p className="mt-6 max-w-2xl text-lg leading-8 text-muted">
-        A home for collaborative projects, experiments, prototypes, and future
-        ventures — where we build and test new ideas through hands-on
-        experimentation.
+        A home for collaborative projects, experiments, 
+        prototypes, and future ventures — where we 
+        explore, build, and test promising ideas.
       </p>
 
       {/* Current projects: empty state until the projects array has entries. */}
