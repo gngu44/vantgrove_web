@@ -85,9 +85,9 @@ export default function LabsPage() {
         </div>
       )}
 
-      {/* "What you'll find here": the content categories as a 3-column grid. */}
+      {/* "Inside Vantgrove Labs": the content categories as a 3-column grid. */}
       <h2 className="mt-16 text-2xl font-semibold tracking-tight text-foreground">
-        What you&apos;ll find here
+        Inside Vantgrove Labs
       </h2>
       <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {contentAreas.map((area) => (
