@@ -11,7 +11,7 @@ const contentAreas = [
   },
   {
     title: "Team Members",
-    description: "The people collaborating on Vantgrove Labs work.",
+    description: "The people contributing to and shaping Vantgrove Labs.",
   },
   {
     title: "Project Updates",
