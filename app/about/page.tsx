@@ -40,6 +40,14 @@ export default function AboutPage() {
           and stewardship are inseparable — and that institutions built to
           endure require both.
         </p>
+        <p>
+        We explore emerging opportunities through Vantgrove Labs, an innovation 
+        initiative focused on practical applications of artificial intelligence, 
+        intelligent systems, and technology-enabled solutions. Through hands-on 
+        collaboration, research, and prototyping, we bridge ideas and execution 
+        while helping develop the next generation of technical and 
+        entrepreneurial talent.
+        </p>
       </div>
 
       {/* "How we work" list with custom green dot markers instead of default
