@@ -41,12 +41,12 @@ export default function AboutPage() {
           endure require both.
         </p>
         <p>
-        We explore emerging opportunities through Vantgrove Labs, an innovation 
-        initiative focused on practical applications of artificial intelligence, 
-        intelligent systems, and technology-enabled solutions. Through hands-on 
-        collaboration, research, and prototyping, we bridge ideas and execution 
-        while helping develop the next generation of technical and 
-        entrepreneurial talent.
+          We explore emerging opportunities through Vantgrove Labs, an innovation 
+          initiative focused on practical applications of artificial intelligence, 
+          intelligent systems, and technology-enabled solutions. Through hands-on 
+          collaboration, research, and prototyping, we bridge ideas and execution 
+          while helping develop the next generation of technical and 
+          entrepreneurial talent.
         </p>
       </div>
 
