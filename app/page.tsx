@@ -52,7 +52,7 @@ export default function Home() {
           width={1920}
           height={760}
           priority // hero image — load it first
-          className="h-[440px] w-full object-cover"
+          className="h-[500px] w-full object-cover"
         />
         {/* Dark left-to-right gradient scrim so white text stays legible
             against the bright photo. */}
@@ -83,7 +83,7 @@ export default function Home() {
       {/* Three focus areas: a responsive card grid (1 column on mobile,
           3 across on small+ screens). Each card is a link with a green
           hover border. */}
-      <section className="mx-auto max-w-5xl px-6 py-20">
+      <section className="mx-auto max-w-5xl px-6 pt-14 pb-20">
         <div className="grid gap-6 sm:grid-cols-3">
           {focusAreas.map((area) => (
             <Link

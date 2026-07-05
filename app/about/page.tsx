@@ -26,12 +26,12 @@ export default function AboutPage() {
           creation — aligning strategy, governance, and execution.
         </p>
         <p>
-          Drawing on more than four decades of leadership experience scaling
-          high-technology businesses, we convert complex objectives into clear
-          strategic priorities and practical operating frameworks. We support
-          companies navigating growth inflection points, operational
-          realignment, market expansion, and leadership transition — with a
-          consistent focus on long-term performance and capital stewardship.
+          Drawing on more than four decades of experience across multiple technology 
+          cycles — from the introduction of the PC to today's AI revolution — we help 
+          organizations navigate complexity and convert strategic intent into practical 
+          operating frameworks. We support companies navigating growth inflection 
+          points, operational realignment, market expansion, and leadership transition 
+          — with a consistent focus on long-term performance and capital stewardship.
         </p>
         <p>
           Like a grove of bamboo, resilient organizations combine strength with
