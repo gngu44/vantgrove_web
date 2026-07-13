@@ -1,9 +1,15 @@
 // Navbar — the site-wide top navigation bar.
 // Rendered once in app/layout.tsx so it appears on every page.
+// On desktop (md+) the links sit in a row; on mobile they collapse into a
+// tap-to-open menu. "use client" is required because the open/close toggle
+// needs React state.
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-// The page links shown on the right side of the nav.
+// The page links shown in the nav (desktop row and mobile menu).
 // Add/remove an entry here to change the menu across the whole site.
 const links = [
   { href: "/labs", label: "Vantgrove Labs" },
@@ -13,15 +19,20 @@ const links = [
 ];
 
 export default function Navbar() {
+  // Whether the mobile menu is expanded.
+  const [open, setOpen] = useState(false);
+
   return (
-    // <header> draws the bottom hairline that separates the bar from the page.
     <header className="border-b border-border">
       {/* h-16 fixes the bar height; items-stretch lets children fill that
-          full height (so the hover boxes can span top-to-bottom). */}
+          full height (so the desktop hover boxes span top-to-bottom). */}
       <nav className="mx-auto flex h-16 max-w-5xl items-stretch justify-between px-6">
-        {/* Logo + wordmark, linking home. items-center keeps it vertically
-            centered rather than stretched. */}
-        <Link href="/" className="flex items-center gap-2">
+        {/* Logo + wordmark, linking home. Closes the mobile menu if open. */}
+        <Link
+          href="/"
+          className="flex items-center gap-2"
+          onClick={() => setOpen(false)}
+        >
           <Image
             src="/vantgrove-logo.png"
             alt="Vantgrove logo"
@@ -35,9 +46,9 @@ export default function Navbar() {
           </span>
         </Link>
 
-        {/* Link list. No gap + flex list items = the hover boxes sit flush,
-            edge-to-edge. */}
-        <ul className="flex items-stretch text-sm font-medium text-muted">
+        {/* Desktop links — hidden on mobile, shown as a flush row at md+.
+            No gap + flex list items = the hover boxes sit edge-to-edge. */}
+        <ul className="hidden items-stretch text-sm font-medium text-muted md:flex">
           {links.map((link) => (
             <li key={link.href} className="flex">
               {/* h-full makes each link fill the bar's height; on hover it
@@ -51,7 +62,55 @@ export default function Navbar() {
             </li>
           ))}
         </ul>
+
+        {/* Hamburger button — shown only on mobile (hidden at md+).
+            Toggles the menu and swaps between the hamburger and X icons. */}
+        <button
+          type="button"
+          onClick={() => setOpen(!open)}
+          aria-label="Toggle navigation menu"
+          aria-expanded={open}
+          className="flex items-center text-foreground md:hidden"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            className="h-6 w-6"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={2}
+            strokeLinecap="round"
+          >
+            {open ? (
+              <path d="M6 6l12 12M18 6L6 18" />
+            ) : (
+              <path d="M4 6h16M4 12h16M4 18h16" />
+            )}
+          </svg>
+        </button>
       </nav>
+
+      {/* Mobile dropdown — always in the DOM so it can animate. The grid-rows
+          trick rolls it open/closed (0fr → 1fr) like a shutter; the inner
+          min-h-0 + overflow-hidden clips the content during the transition. */}
+      <div
+        className={`grid overflow-hidden transition-[grid-template-rows] duration-300 ease-in-out md:hidden ${
+          open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+        }`}
+      >
+        <ul className="min-h-0 overflow-hidden border-t border-border text-sm font-medium text-muted">
+          {links.map((link) => (
+            <li key={link.href}>
+              <Link
+                href={link.href}
+                onClick={() => setOpen(false)}
+                className="block px-6 py-3 transition-colors hover:bg-brand hover:text-white"
+              >
+                {link.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
     </header>
   );
 }
